@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.tilted-square {
+  width: 150px;
+  height: 150px;
+  background-color: transparent;
+  position: relative;
+  transform: rotate(-45deg);
+  overflow: hidden;
+}
+
+.tilted-square::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(45deg, #ff6347, #00bfff, #008000, #ff8c00);
+  background-origin: border-box;
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg, #4b0082, #9370db, #556b2f, #8a2be2);
+  border-image-slice: 1;
+  z-index: -1;
+}
+
+    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Tilted Square Box</title>
+</head>
+<body>
+  <div class="tilted-square"></div>
+</body>
+</html>
