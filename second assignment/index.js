@@ -1,15 +1,15 @@
 function findRoute(tickets, startCity) {
     const route = [];
     let currentCity = startCity;
+    console.log(tickets)
   
     while (tickets[currentCity]) {
       const nextCity = tickets[currentCity];
       route.push(currentCity);
-      delete tickets[currentCity]; // Mark the ticket as used
+      delete tickets[currentCity]; 
       currentCity = nextCity;
     }
-  
-    route.push(currentCity); // Add the final destination
+    
     return route;
   }
   
@@ -22,7 +22,7 @@ function findRoute(tickets, startCity) {
     'Skopje': 'Paris',
     'Amsterdam': 'Barcelona',
     'Berlin': 'Kiev',
-    'Berlin': 'Amsterdam', // Note: Overwrites the previous value
+    'Berlin': 'Amsterdam',
   };
   
   const startCity = 'Kiev';
