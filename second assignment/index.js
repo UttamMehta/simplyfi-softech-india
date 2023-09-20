@@ -1,23 +1,36 @@
 function findRoute(tickets, citiesVisited) {
-    if (citiesVisited.length === 0) {
-      return [];
-    }
+    const visited = new Set();
+    const route = [];
   
-    const route = [citiesVisited[0]]; // Start with the first city
+    function dfs(city) {
+      visited.add(city);
+      route.push(city);
   
-    for (let i = 1; i < citiesVisited.length; i++) {
-      const fromCity = citiesVisited[i - 1];
-      const toCity = citiesVisited[i];
-  
-      if (tickets[fromCity] && tickets[fromCity].includes(toCity)) {
-        route.push(toCity); // Add the destination to the route
-      } else {
-        // Invalid route, return an empty array
-        return [];
+      if (route.length === citiesVisited.length) {
+        return true; // All cities have been visited
       }
+  
+      if (city in tickets) {
+        for (const nextCity of tickets[city]) {
+          if (!visited.has(nextCity)) {
+            if (dfs(nextCity)) {
+              return true;
+            }
+          }
+        }
+      }
+  
+      // If we reach this point, backtrack
+      visited.delete(city);
+      route.pop();
+      return false;
     }
   
-    return route;
+    if (dfs('Kiev')) {
+      return route;
+    } else {
+      return null; // No valid route found
+    }
   }
   
   const availableTickets = {
@@ -31,11 +44,11 @@ function findRoute(tickets, citiesVisited) {
     'Berlin': ['Kiev', 'Amsterdam'],
   };
   
-  const citiesVisited = ['Kiev', 'Berlin', 'Prague','Amsterdam', 'Barcelona','Zurich'];
+  const citiesVisited = ['Amsterdam', 'Kiev', 'Zurich', 'Prague', 'Berlin', 'Barcelona'];
   
   const route = findRoute(availableTickets, citiesVisited);
   
-  if (route.length > 0) {
+  if (route) {
     console.log('Your son traveled to the following cities:');
     console.log(route.join(' -> '));
   } else {
