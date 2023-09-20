@@ -2,7 +2,65 @@
 <html lang="en">
 <head>
     <style>
-        
+        body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  border: 5px solid transparent;
+  position: relative;
+}
+
+.box::before, .box::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 5px;
+}
+
+.box::before {
+  top: -5px;
+  left: 0;
+  background-color: #ff6347; /* Red */
+}
+
+.box::after {
+  bottom: -5px;
+  left: 0;
+  background-color: #00bfff; /* Blue */
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: #fff; /* White */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1, p {
+  margin: 0;
+}
+
+h1 {
+  color: #333; /* Dark Gray */
+}
+
+p {
+  color: #666; /* Gray */
+}
+
     </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
