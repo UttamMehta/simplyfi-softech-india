@@ -31,7 +31,7 @@ function findRoute(tickets, citiesVisited) {
     'Berlin': ['Kiev', 'Amsterdam'],
   };
   
-  const citiesVisited = ['Kiev', 'Prague', 'Zurich', 'Amsterdam', 'Barcelona', 'Berlin'];
+  const citiesVisited = ['Kiev', 'Berlin', 'Prague','Amsterdam', 'Barcelona','Zurich'];
   
   const route = findRoute(availableTickets, citiesVisited);
   
