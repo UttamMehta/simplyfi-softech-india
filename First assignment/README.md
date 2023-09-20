@@ -1,1 +1,2 @@
-<img src="./Screenshot (3).png"/>
+
+<img src="https://i.ibb.co/x5LqSxw/Screenshot-3.png" alt="Screenshot-3"/>
