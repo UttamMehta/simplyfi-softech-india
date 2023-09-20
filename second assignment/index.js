@@ -1,55 +1,35 @@
-function findRoute(tickets, citiesVisited) {
-    const visited = new Set();
+function findRoute(tickets, startCity) {
     const route = [];
+    let currentCity = startCity;
   
-    function dfs(city) {
-      visited.add(city);
-      route.push(city);
-  
-      if (route.length === citiesVisited.length) {
-        return true; // All cities have been visited
-      }
-  
-      if (city in tickets) {
-        for (const nextCity of tickets[city]) {
-          if (!visited.has(nextCity)) {
-            if (dfs(nextCity)) {
-              return true;
-            }
-          }
-        }
-      }
-  
-      // If we reach this point, backtrack
-      visited.delete(city);
-      route.pop();
-      return false;
+    while (tickets[currentCity]) {
+      const nextCity = tickets[currentCity];
+      route.push(currentCity);
+      delete tickets[currentCity]; // Mark the ticket as used
+      currentCity = nextCity;
     }
   
-    if (dfs('Kiev')) {
-      return route;
-    } else {
-      return null; // No valid route found
-    }
+    route.push(currentCity); // Add the final destination
+    return route;
   }
   
   const availableTickets = {
-    'Paris': ['Skopje'],
-    'Zurich': ['Amsterdam'],
-    'Prague': ['Zurich'],
-    'Barcelona': ['Berlin'],
-    'Kiev': ['Prague'],
-    'Skopje': ['Paris'],
-    'Amsterdam': ['Barcelona'],
-    'Berlin': ['Kiev'],
-    'Berlin':['Amsterdam'],
+    'Paris': 'Skopje',
+    'Zurich': 'Amsterdam',
+    'Prague': 'Zurich',
+    'Barcelona': 'Berlin',
+    'Kiev': 'Prague',
+    'Skopje': 'Paris',
+    'Amsterdam': 'Barcelona',
+    'Berlin': 'Kiev',
+    'Berlin': 'Amsterdam', // Note: Overwrites the previous value
   };
   
-  const citiesVisited = ['Amsterdam', 'Kiev', 'Zurich', 'Prague', 'Berlin', 'Barcelona'];
+  const startCity = 'Kiev';
   
-  const route = findRoute(availableTickets, citiesVisited);
+  const route = findRoute(availableTickets, startCity);
   
-  if (route) {
+  if (route.length > 0) {
     console.log('Your son traveled to the following cities:');
     console.log(route.join(' -> '));
   } else {
