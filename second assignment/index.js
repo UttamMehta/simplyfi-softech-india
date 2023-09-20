@@ -40,8 +40,9 @@ function findRoute(tickets, citiesVisited) {
     'Barcelona': ['Berlin'],
     'Kiev': ['Prague'],
     'Skopje': ['Paris'],
-    'Amsterdam': ['Barcelona', 'Berlin'],
-    'Berlin': ['Kiev', 'Amsterdam'],
+    'Amsterdam': ['Barcelona'],
+    'Berlin': ['Kiev'],
+    'Berlin':['Amsterdam'],
   };
   
   const citiesVisited = ['Amsterdam', 'Kiev', 'Zurich', 'Prague', 'Berlin', 'Barcelona'];
